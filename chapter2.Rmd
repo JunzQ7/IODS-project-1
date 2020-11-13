@@ -7,7 +7,25 @@
 - Assume the reader has no previous knowledge of your data or the more advanced methods you are using.
 
 ```{r}
-date()
+lrn2014 <- read.csv("C:/Users/Juhana/Documents/IODS-project-1/data/learning2014.csv", row.names = 1)
+
+alcGit <- read.csv("https://github.com/JunzQ7/IODS-project/tree/master/data/alc.csv")
 ```
 
-Here we go again...
+```{r}
+library(ggplot2)
+library(GGally)
+p <- ggpairs(lrn2014, mapping = aes(), lower = list(combo = wrap("facethist", bins = 20)))
+p
+```
+```{r}
+model = lm(Points~Attitude+stra+surf, data = lrn2014)
+summary(model)
+model2 = lm(Points~Attitude, data = lrn2014)
+summary(model2)
+```
+
+```{r}
+plot(model2, which = c(1,2,5))
+```
+
